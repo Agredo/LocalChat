@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="LocalChat.Maui.Views.Chat.ChatView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chat="clr-namespace:LocalChat.Maui.Views.Chat">
+    <ContentView.Resources>
+        <!--  Textvorlage für Textnachrichten  -->
+        <DataTemplate x:Key="TextMessageTemplate">
+            <chat:ChatBubble>
+                <chat:ChatBubble.Content>
+                    <Frame
+                        Padding="5"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent">
+                        <Label
+                            LineBreakMode="WordWrap"
+                            Text="{Binding MessageText}"
+                            TextType="Text" />
+                    </Frame>
+                </chat:ChatBubble.Content>
+                <chat:ChatBubble.IsUserMessage>
+                    <Binding Path="IsUserMessage" />
+                </chat:ChatBubble.IsUserMessage>
+                <chat:ChatBubble.Timestamp>
+                    <Binding Path="Timestamp" />
+                </chat:ChatBubble.Timestamp>
+            </chat:ChatBubble>
+        </DataTemplate>
+
+        <!--  Bildvorlage für Bildnachrichten  -->
+        <DataTemplate x:Key="ImageMessageTemplate">
+            <chat:ChatBubble>
+                <chat:ChatBubble.Content>
+                    <StackLayout Spacing="5">
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="200"
+                            Source="{Binding ImageSource}" />
+                        <Label
+                            IsVisible="{Binding Caption, Converter={StaticResource StringToBoolConverter}}"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Caption}" />
+                    </StackLayout>
+                </chat:ChatBubble.Content>
+                <chat:ChatBubble.IsUserMessage>
+                    <Binding Path="IsUserMessage" />
+                </chat:ChatBubble.IsUserMessage>
+                <chat:ChatBubble.Timestamp>
+                    <Binding Path="Timestamp" />
+                </chat:ChatBubble.Timestamp>
+            </chat:ChatBubble>
+        </DataTemplate>
+
+        <!--  Codevorlage für Codenachrichten  -->
+        <DataTemplate x:Key="CodeMessageTemplate">
+            <chat:ChatBubble>
+                <chat:ChatBubble.Content>
+                    <StackLayout Spacing="5">
+                        <Label
+                            IsVisible="{Binding Description, Converter={StaticResource StringToBoolConverter}}"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Description}" />
+                        <Frame
+                            Padding="10,5"
+                            BackgroundColor="#f5f5f5"
+                            BorderColor="#dddddd"
+                            CornerRadius="5">
+                            <StackLayout Spacing="5">
+                                <Label
+                                    FontSize="12"
+                                    Text="{Binding Language}"
+                                    TextColor="#666666" />
+                                <Label
+                                    FontFamily="Courier New"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding CodeContent}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </chat:ChatBubble.Content>
+                <chat:ChatBubble.IsUserMessage>
+                    <Binding Path="IsUserMessage" />
+                </chat:ChatBubble.IsUserMessage>
+                <chat:ChatBubble.Timestamp>
+                    <Binding Path="Timestamp" />
+                </chat:ChatBubble.Timestamp>
+            </chat:ChatBubble>
+        </DataTemplate>
+
+        <!--  Template-Selector zur Auswahl des richtigen Templates  -->
+        <chat:ChatMessageTemplateSelector
+            x:Key="MessageTemplateSelector"
+            CodeMessageTemplate="{StaticResource CodeMessageTemplate}"
+            ImageMessageTemplate="{StaticResource ImageMessageTemplate}"
+            TextMessageTemplate="{StaticResource TextMessageTemplate}" />
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="*, Auto" RowSpacing="0">
+        <!--  Chat-Nachrichten  -->
+        <CollectionView
+            x:Name="MessagesCollection"
+            Grid.Row="0"
+            Margin="0,5"
+            ItemTemplate="{StaticResource MessageTemplateSelector}"
+            ItemsSource="{Binding ChatHistory}"
+            ItemsUpdatingScrollMode="KeepLastItemInView">
+            <CollectionView.EmptyView>
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label
+                        FontSize="16"
+                        Text="Keine Nachrichten vorhanden."
+                        TextColor="#666666" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!--  Aktivitätsindikator für Antwortgenerierung  -->
+        <StackLayout
+            x:Name="LoadingIndicator"
+            Grid.Row="0"
+            Margin="0,0,0,10"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsProcessing}"
+            VerticalOptions="End">
+            <Frame
+                Padding="15,10"
+                BackgroundColor="#f0f0f0"
+                CornerRadius="15"
+                HasShadow="True">
+                <HorizontalStackLayout Spacing="10">
+                    <ActivityIndicator IsRunning="True" Color="#512BD4" />
+                    <Label
+                        Text="Generiere Antwort..."
+                        TextColor="#512BD4"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Frame>
+        </StackLayout>
+
+        <!--  Eingabebereich  -->
+        <Grid
+            Grid.Row="1"
+            Padding="10"
+            BackgroundColor="#f0f0f0"
+            ColumnDefinitions="*, Auto">
+            <Border
+                Grid.Column="0"
+                Margin="0,0,5,0"
+                BackgroundColor="#FFFFFF"
+                Stroke="#DDDDDD"
+                StrokeShape="RoundRectangle 20,20,20,20"
+                StrokeThickness="1">
+                <Editor
+                    x:Name="MessageInput"
+                    Margin="10,0"
+                    AutoSize="TextChanges"
+                    MaximumHeightRequest="100"
+                    Placeholder="Nachricht eingeben..."
+                    Text="{Binding CurrentMessage}" />
+            </Border>
+
+            <Button
+                Grid.Column="1"
+                BackgroundColor="#512BD4"
+                Command="{Binding SendMessageCommand}"
+                CornerRadius="20"
+                HeightRequest="40"
+                IsEnabled="{Binding CanSendMessage}"
+                Text="Senden"
+                TextColor="White"
+                WidthRequest="80" />
+        </Grid>
+    </Grid>
+</ContentView>
