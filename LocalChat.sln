@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.Maui", "LocalChat\LocalChat.Maui.csproj", "{889DC1BF-546F-4325-A368-7D5EEC130F5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.Maui.Views", "LocalChat.Maui.Views\LocalChat.Maui.Views.csproj", "{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.AI", "LocalChat.AI\LocalChat.AI.csproj", "{6CA1FF89-1D4D-475F-9E5A-6FEFFB7BA5AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgredoApplication.MVVM.Services", "AgredoApplication.MVVM.Services\AgredoApplication.MVVM.Services.csproj", "{8A092940-EA05-4220-9957-108D678F93D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.Models", "LocalChat.Models\LocalChat.Models.csproj", "{DFB4D729-702B-4672-984D-4106EEFA923F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.ViewModels", "LocalChat.ViewModels\LocalChat.ViewModels.csproj", "{DE183ED0-011A-413D-A1A3-ABA1EEAACCAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI.Maui", "UI.Maui", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AgredoApplication", "AgredoApplication", "{E8231753-5E40-4E03-AC5D-36CF27434310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgredoApplication.MVVM.Services.Maui", "AgredoApplication.MVVM.Services.Maui\AgredoApplication.MVVM.Services.Maui.csproj", "{77087D5F-12D3-4D32-AF1F-A1BEE90378F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalChat.Services", "LocalChat.Services\LocalChat.Services.csproj", "{1DC7DF46-C000-404F-8C55-D88A71BD3A7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{889DC1BF-546F-4325-A368-7D5EEC130F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889DC1BF-546F-4325-A368-7D5EEC130F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889DC1BF-546F-4325-A368-7D5EEC130F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889DC1BF-546F-4325-A368-7D5EEC130F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA1FF89-1D4D-475F-9E5A-6FEFFB7BA5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA1FF89-1D4D-475F-9E5A-6FEFFB7BA5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA1FF89-1D4D-475F-9E5A-6FEFFB7BA5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA1FF89-1D4D-475F-9E5A-6FEFFB7BA5AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A092940-EA05-4220-9957-108D678F93D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A092940-EA05-4220-9957-108D678F93D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A092940-EA05-4220-9957-108D678F93D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A092940-EA05-4220-9957-108D678F93D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB4D729-702B-4672-984D-4106EEFA923F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB4D729-702B-4672-984D-4106EEFA923F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB4D729-702B-4672-984D-4106EEFA923F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB4D729-702B-4672-984D-4106EEFA923F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE183ED0-011A-413D-A1A3-ABA1EEAACCAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE183ED0-011A-413D-A1A3-ABA1EEAACCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE183ED0-011A-413D-A1A3-ABA1EEAACCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE183ED0-011A-413D-A1A3-ABA1EEAACCAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77087D5F-12D3-4D32-AF1F-A1BEE90378F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77087D5F-12D3-4D32-AF1F-A1BEE90378F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77087D5F-12D3-4D32-AF1F-A1BEE90378F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77087D5F-12D3-4D32-AF1F-A1BEE90378F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC7DF46-C000-404F-8C55-D88A71BD3A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC7DF46-C000-404F-8C55-D88A71BD3A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC7DF46-C000-404F-8C55-D88A71BD3A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC7DF46-C000-404F-8C55-D88A71BD3A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{889DC1BF-546F-4325-A368-7D5EEC130F5E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F7A8E3A2-1B36-4832-8817-F4DA7CBE587B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8A092940-EA05-4220-9957-108D678F93D4} = {E8231753-5E40-4E03-AC5D-36CF27434310}
+		{77087D5F-12D3-4D32-AF1F-A1BEE90378F6} = {E8231753-5E40-4E03-AC5D-36CF27434310}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D11937CC-0CE6-4716-ABBB-23E105ABF78D}
+	EndGlobalSection
+EndGlobal
