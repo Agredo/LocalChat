@@ -4,23 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chat="clr-namespace:LocalChat.Maui.Views.Chat"
-    xmlns:chatTemplateSelecor="clr-namespace:LocalChat.Maui.Views.Chat.TemplateSelector">
+    xmlns:chatTemplateSelecor="clr-namespace:LocalChat.Maui.Views.Chat.TemplateSelector"
+    xmlns:semanticKernel="clr-namespace:Microsoft.SemanticKernel;assembly=Microsoft.SemanticKernel.Abstractions">
     <ContentView.Resources>
         <!--  Textvorlage für Textnachrichten  -->
-        <DataTemplate x:Key="TextMessageTemplate">
-            <chat:ChatBubble>
-                <chat:ChatBubble.Content>
-                    <Frame
-                        Padding="5"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent">
-                        <Label
-                            LineBreakMode="WordWrap"
-                            Text="{Binding MessageText}"
-                            TextType="Text" />
-                    </Frame>
-                </chat:ChatBubble.Content>
-            </chat:ChatBubble>
+        <DataTemplate x:Key="TextMessageTemplate" x:DataType="semanticKernel:ChatMessageContent">
+            <chat:ChatBubble Role="{Binding Role}" TextContent="{Binding Content}" />
         </DataTemplate>
 
         <!--  Bildvorlage für Bildnachrichten  -->
@@ -86,7 +75,6 @@
             Grid.Row="0"
             Margin="0,5"
             ItemTemplate="{StaticResource MessageTemplateSelector}"
-            ItemsSource="{Binding ChatHistory}"
             ItemsUpdatingScrollMode="KeepLastItemInView">
             <CollectionView.EmptyView>
                 <Grid HorizontalOptions="Center" VerticalOptions="Center">

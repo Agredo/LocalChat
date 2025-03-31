@@ -1,31 +1,56 @@
-namespace LocalChat.Maui.Views.Chat;
+using Maui.BindableProperty.Generator.Core;
+using Microsoft.SemanticKernel.ChatCompletion;
+using System.Data;
+
+namespace LocalChat.Maui.Views.Chat; 
 
 public partial class ChatBubble : ContentView
 {
-	public ChatBubble()
-	{
-		InitializeComponent();
-	}
 
-    /// <summary>
-    /// Erstellt eine neue Chat-Bubble mit dem angegebenen Inhalt
-    /// </summary>
-    /// <param name="content">Der anzuzeigende Inhalt</param>
-    /// <param name="isUserMessage">Gibt an, ob die Nachricht vom Benutzer stammt</param>
-    /// <param name="timestamp">Der Zeitstempel der Nachricht</param>
-    public ChatBubble(View content, bool isUserMessage, DateTime timestamp)
+    [AutoBindable(OnChanged = nameof(IsRoleUpdated))]
+    private readonly AuthorRole role;
+
+    [AutoBindable(OnChanged = nameof(TextContentUpdated))]
+    private string textContent;
+
+    private void TextContentUpdated(string oldValue, string newValue)
+    {
+        if (newValue != textContent && newValue is not null)
+        {
+            TextContentLabel.Text = newValue;
+        }
+    }
+
+    private void IsRoleUpdated(AuthorRole newValue)
+    {
+        Role = newValue;
+
+        if (Role == AuthorRole.User)
+        { 
+            BubbleFrame.Style = (Style)Resources["UserBubbleStyle"];
+        }
+        else
+        {
+            BubbleFrame.Style = (Style)Resources["AssistantBubbleStyle"];
+        }
+    }
+
+
+    [AutoBindable(OnChanged = nameof(TimestampUpdated))]
+    private readonly DateTime timestamp;
+
+    private void TimestampUpdated(DateTime newValue)
+    {
+        if (newValue != timestamp)
+        {
+            TimestampLabel.Text = newValue.ToString("HH:mm");
+        }
+    }
+
+
+
+    public ChatBubble()
     {
         InitializeComponent();
-
-        // Inhalt setzen
-        ContentContainer.Content = content;
-
-        // Stil basierend auf Absender setzen
-        BubbleFrame.Style = isUserMessage
-            ? (Style)Resources["UserBubbleStyle"]
-            : (Style)Resources["AssistantBubbleStyle"];
-
-        // Zeitstempel setzen
-        TimestampLabel.Text = timestamp.ToString("HH:mm");
     }
 }

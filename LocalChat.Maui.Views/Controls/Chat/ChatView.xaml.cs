@@ -1,4 +1,3 @@
-using LocalChat.Models.Chat;
 using Maui.BindableProperty.Generator.Core;
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;

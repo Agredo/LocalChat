@@ -8,6 +8,10 @@
     Title="StartPage"
     x:DataType="vm:StartPageViewModel">
     <Grid>
-        <chat:ChatView x:Name="ChatView" ChatHistory="{Binding ChatHistory}" />
+        <chat:ChatView
+            x:Name="ChatView"
+            ChatHistory="{Binding ChatHistory}"
+            CurrentMessage="{Binding CurrentMessage}"
+            IsProcessing="{Binding IsProcessing}" />
     </Grid>
 </ContentPage>
