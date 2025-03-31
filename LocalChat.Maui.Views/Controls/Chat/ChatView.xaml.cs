@@ -1,3 +1,4 @@
+using LocalChat.Models.Chat;
 using Maui.BindableProperty.Generator.Core;
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;
@@ -13,31 +14,31 @@ public partial class ChatView : ContentView
     /// Die aktuelle Nachricht in der Eingabe
     /// </summary>
     [AutoBindable(OnChanged = nameof(OnCurrentMessageChanged))]
-    private string _currentMessage = string.Empty;
+    private string currentMessage = string.Empty;
 
     /// <summary>
     /// Der Chatverlauf
     /// </summary>
     [AutoBindable(OnChanged = nameof(OnChatHistoryChanged))]
-    private ChatHistory _chatHistory = new ChatHistory();
+    private ChatHistory chatHistory = [];
 
     /// <summary>
     /// Der Befehl, der beim Senden einer Nachricht ausgeführt wird
     /// </summary>
     [AutoBindable]
-    private ICommand _sendMessageCommand;
+    private ICommand sendMessageCommand;
 
     /// <summary>
     /// Gibt an, ob gerade eine Nachricht verarbeitet wird
     /// </summary>
     [AutoBindable]
-    private bool _isProcessing;
+    private bool isProcessing;
 
     /// <summary>
     /// Gibt an, ob eine Nachricht gesendet werden kann
     /// </summary>
     [AutoBindable]
-    private bool _canSendMessage;
+    private bool canSendMessage;
 
     #endregion
 
@@ -73,7 +74,6 @@ public partial class ChatView : ContentView
         {
             newNotify.PropertyChanged += OnChatHistoryPropertyChanged;
         }
-
         // Aktualisiere die Anzeige
         MessagesCollection.ItemsSource = ChatHistory;
     }

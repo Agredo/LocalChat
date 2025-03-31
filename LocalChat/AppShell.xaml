@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LocalChat"
-    Shell.FlyoutBehavior="Flyout"
-    Title="LocalChat">
+    xmlns:pages="clr-namespace:LocalChat.Maui.Views.Pages;assembly=LocalChat.Maui.Views"
+    Title="LocalChat"
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:StartPage}"
         Route="MainPage" />
 
 </Shell>

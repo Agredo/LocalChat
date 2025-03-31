@@ -3,7 +3,8 @@
     x:Class="LocalChat.Maui.Views.Chat.ChatView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:chat="clr-namespace:LocalChat.Maui.Views.Chat">
+    xmlns:chat="clr-namespace:LocalChat.Maui.Views.Chat"
+    xmlns:chatTemplateSelecor="clr-namespace:LocalChat.Maui.Views.Chat.TemplateSelector">
     <ContentView.Resources>
         <!--  Textvorlage für Textnachrichten  -->
         <DataTemplate x:Key="TextMessageTemplate">
@@ -19,12 +20,6 @@
                             TextType="Text" />
                     </Frame>
                 </chat:ChatBubble.Content>
-                <chat:ChatBubble.IsUserMessage>
-                    <Binding Path="IsUserMessage" />
-                </chat:ChatBubble.IsUserMessage>
-                <chat:ChatBubble.Timestamp>
-                    <Binding Path="Timestamp" />
-                </chat:ChatBubble.Timestamp>
             </chat:ChatBubble>
         </DataTemplate>
 
@@ -43,12 +38,6 @@
                             Text="{Binding Caption}" />
                     </StackLayout>
                 </chat:ChatBubble.Content>
-                <chat:ChatBubble.IsUserMessage>
-                    <Binding Path="IsUserMessage" />
-                </chat:ChatBubble.IsUserMessage>
-                <chat:ChatBubble.Timestamp>
-                    <Binding Path="Timestamp" />
-                </chat:ChatBubble.Timestamp>
             </chat:ChatBubble>
         </DataTemplate>
 
@@ -79,17 +68,11 @@
                         </Frame>
                     </StackLayout>
                 </chat:ChatBubble.Content>
-                <chat:ChatBubble.IsUserMessage>
-                    <Binding Path="IsUserMessage" />
-                </chat:ChatBubble.IsUserMessage>
-                <chat:ChatBubble.Timestamp>
-                    <Binding Path="Timestamp" />
-                </chat:ChatBubble.Timestamp>
             </chat:ChatBubble>
         </DataTemplate>
 
         <!--  Template-Selector zur Auswahl des richtigen Templates  -->
-        <chat:ChatMessageTemplateSelector
+        <chatTemplateSelecor:ChatMessageTemplateSelector
             x:Key="MessageTemplateSelector"
             CodeMessageTemplate="{StaticResource CodeMessageTemplate}"
             ImageMessageTemplate="{StaticResource ImageMessageTemplate}"

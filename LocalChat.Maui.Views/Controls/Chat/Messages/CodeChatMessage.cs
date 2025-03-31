@@ -7,19 +7,19 @@ namespace LocalChat.Maui.Views.Chat
         /// <summary>
         /// Der Code-Inhalt
         /// </summary>
-        [AutoBindable(DefaultValue = "")]
+        [AutoBindable]
         private string codeContent;
 
         /// <summary>
         /// Die Programmiersprache des Codes
         /// </summary>
-        [AutoBindable(DefaultValue = "\"csharp\"")]
-        private string language;
+        [AutoBindable]
+        private string language = "\"csharp\"";
 
         /// <summary>
         /// Optionale Beschreibung zum Code
         /// </summary>
-        [AutoBindable(DefaultValue = "")]
+        [AutoBindable]
         private string description;
 
         /// <summary>

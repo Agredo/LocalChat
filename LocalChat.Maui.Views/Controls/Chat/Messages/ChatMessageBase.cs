@@ -10,20 +10,20 @@ public abstract partial class ChatMessageBase : ContentView
     /// <summary>
     /// Gibt an, ob es sich um eine Nachricht des Benutzers handelt (true) oder des KI-Assistenten (false)
     /// </summary>
-    [AutoBindable(DefaultValue = "false")]
+    [AutoBindable]
     private bool isUserMessage;
 
     /// <summary>
     /// Zeitstempel der Nachricht
     /// </summary>
-    [AutoBindable(DefaultValue = "DateTime.Now")]
-    private DateTime timestamp;
+    [AutoBindable]
+    private DateTime timestamp = DateTime.Now;
 
     /// <summary>
     /// Eine eindeutige ID für die Nachricht
     /// </summary>
-    [AutoBindable(DefaultValue = "Guid.NewGuid().ToString()")]
-    private string messageId;
+    [AutoBindable]
+    private string messageId = Guid.NewGuid().ToString();
 
     /// <summary>
     /// Erstellt eine neue Instanz der ChatMessageBase-Klasse
