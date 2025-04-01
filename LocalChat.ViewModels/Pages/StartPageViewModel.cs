@@ -33,6 +33,8 @@ public partial class StartPageViewModel : ObservableObject
         string userMessage = CurrentMessage;
         CurrentMessage = string.Empty;
 
+        ChatHistory = new ChatHistory(ChatHistory);
+
         // Set processing state
         IsProcessing = true;
 
@@ -55,12 +57,14 @@ public partial class StartPageViewModel : ObservableObject
                     break;
                 default:
                     ChatHistory.AddAssistantMessage($"You said: {userMessage}. This is a test response from the assistant.");
+                    ChatHistory = new ChatHistory(ChatHistory);
                     break;
             }
         }
         catch (Exception ex)
         {
             ChatHistory.AddAssistantMessage($"Error: {ex.Message}");
+            ChatHistory = new ChatHistory(ChatHistory);
         }
         finally
         {

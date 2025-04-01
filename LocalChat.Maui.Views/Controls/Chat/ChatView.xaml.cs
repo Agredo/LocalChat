@@ -1,3 +1,4 @@
+using LocalChat.AI.Models;
 using Maui.BindableProperty.Generator.Core;
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;
@@ -74,6 +75,7 @@ public partial class ChatView : ContentView
             newNotify.PropertyChanged += OnChatHistoryPropertyChanged;
         }
         // Aktualisiere die Anzeige
+
         MessagesCollection.ItemsSource = ChatHistory;
     }
 
