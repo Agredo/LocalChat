@@ -92,7 +92,6 @@
             Grid.Row="0"
             Margin="0,0,0,10"
             HorizontalOptions="Center"
-            IsVisible="{Binding IsProcessing}"
             VerticalOptions="End">
             <Frame
                 Padding="15,10"
@@ -128,16 +127,14 @@
                     AutoSize="TextChanges"
                     MaximumHeightRequest="100"
                     Placeholder="Nachricht eingeben..."
-                    Text="{Binding CurrentMessage}" />
+                    TextChanged="MessageInput_TextChanged" />
             </Border>
 
             <Button
                 Grid.Column="1"
                 BackgroundColor="#512BD4"
-                Command="{Binding SendMessageCommand}"
                 CornerRadius="20"
                 HeightRequest="40"
-                IsEnabled="{Binding CanSendMessage}"
                 Text="Senden"
                 TextColor="White"
                 WidthRequest="80" />

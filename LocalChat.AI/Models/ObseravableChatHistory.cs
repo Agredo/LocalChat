@@ -16,7 +16,7 @@ public class ObservableChatHistory : ObservableCollection<ChatMessageContent>
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="ObservableChatHistory"/> with a first message in the provided <see cref="AuthorRole"/>.
+    /// Creates a new instance of the <see cref="ChatHistory"/> with a first message in the provided <see cref="AuthorRole"/>.
     /// If not role is provided then the first message will default to <see cref="AuthorRole.System"/> role.
     /// </summary>
     /// <param name="message">The text message to add to the first message in chat history.</param>
@@ -36,7 +36,7 @@ public class ObservableChatHistory : ObservableCollection<ChatMessageContent>
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="ObservableChatHistory"/> class with a system message.
+    /// Creates a new instance of the <see cref="ChatHistory"/> class with a system message.
     /// </summary>
     /// <param name="systemMessage">The system message to add to the history.</param>
     public ObservableChatHistory(string systemMessage)

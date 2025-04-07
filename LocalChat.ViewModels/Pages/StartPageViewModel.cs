@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalChat.AI.Models;
 using Microsoft.SemanticKernel.ChatCompletion;
+using System.Diagnostics;
 
 namespace LocalChat.ViewModels.Pages;
 
@@ -10,14 +12,42 @@ public partial class StartPageViewModel : ObservableObject
     private ChatHistory chatHistory = new ChatHistory();
 
     [ObservableProperty]
-    private string currentMessage = string.Empty;
+    private string currentMessage = "Write me a C# Program to print the fibonacci sequence!";
 
     [ObservableProperty]
     private bool isProcessing;
 
+    public LocalOnnxChatModel LocalOnnxChatModel { get; }
+
     public StartPageViewModel()
     {
-        FillChatHistoryWithTestData();
+        IsProcessing = false;
+        //FillChatHistoryWithTestData();
+
+        LocalOnnxChatModel = new LocalOnnxChatModel("C:\\Users\\chris\\.aitk\\models\\DeepSeek\\DeepSeek-R1-Distilled-NPU-Optimized", ModelType.DeepSeek, ChatHistory);
+
+        LocalOnnxChatModel.initialize();
+
+        LocalOnnxChatModel.OnTokenGenerated += (token) =>
+        {
+            // Handle token generation events
+            if (token != null)
+            {
+                // Display the generated token
+                Debug.Write(token);
+            }
+        };
+
+        LocalOnnxChatModel.OnGenerationMetrics += (metrics) =>
+        {
+            // Handle generation metrics events
+            if (metrics != null)
+            {
+                // Display the generation metrics
+                Debug.WriteLine(string.Empty);
+                Debug.WriteLine($"Generated {metrics.TotalTokens} tokens in {metrics.TokensPerSecond} Tokens/ms");
+            }
+        };
     }
 
     [RelayCommand]
@@ -37,6 +67,13 @@ public partial class StartPageViewModel : ObservableObject
 
         // Set processing state
         IsProcessing = true;
+        // Use streaming generation
+        var response = await LocalOnnxChatModel.SendMessageStreamingAsync(
+            userMessage
+        );
+
+        // Add response to chat
+        ChatHistory.AddAssistantMessage(response.Content);
 
         try
         {

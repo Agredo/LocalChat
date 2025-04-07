@@ -13,8 +13,8 @@ public partial class ChatView : ContentView
     /// <summary>
     /// Die aktuelle Nachricht in der Eingabe
     /// </summary>
-    [AutoBindable(OnChanged = nameof(OnCurrentMessageChanged))]
-    private string currentMessage = string.Empty;
+    [AutoBindable(OnChanged = nameof(OnCurrentMessageChanged), DefaultBindingMode = "TwoWay")]
+    private string currentMessage;
 
     /// <summary>
     /// Der Chatverlauf
@@ -51,9 +51,6 @@ public partial class ChatView : ContentView
     {
         InitializeComponent();
 
-        // Event-Handler für die Enter-Taste im Editor
-        MessageInput.Completed += OnMessageInputCompleted;
-
         // Aktualisiere den Status für das Senden von Nachrichten
         UpdateCanSendMessage();
     }
@@ -62,9 +59,15 @@ public partial class ChatView : ContentView
 
     #region Event Handler
 
-    private void OnCurrentMessageChanged()
+    private void OnCurrentMessageChanged(string oldValue, string newValue)
     {
         UpdateCanSendMessage();
+
+        if(oldValue  != newValue)
+        {
+            MessageInput.Text = newValue;
+        }
+
     }
 
     private void OnChatHistoryChanged()
@@ -88,14 +91,6 @@ public partial class ChatView : ContentView
         }
     }
 
-    private void OnMessageInputCompleted(object sender, EventArgs e)
-    {
-        if (CanSendMessage && SendMessageCommand?.CanExecute(null) == true)
-        {
-            SendMessageCommand.Execute(null);
-        }
-    }
-
     #endregion
 
     #region Helper Methods
@@ -109,4 +104,9 @@ public partial class ChatView : ContentView
     }
 
     #endregion
+
+    private void MessageInput_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        CurrentMessage = e.NewTextValue;
+    }
 }

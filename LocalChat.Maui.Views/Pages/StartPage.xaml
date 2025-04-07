@@ -11,7 +11,7 @@
         <chat:ChatView
             x:Name="ChatView"
             ChatHistory="{Binding ChatHistory}"
-            CurrentMessage="{Binding CurrentMessage}"
+            CurrentMessage="{Binding CurrentMessage, Mode=TwoWay}"
             IsProcessing="{Binding IsProcessing}" />
     </Grid>
 </ContentPage>
